@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from .models import Baby, Playdate
-
+from .forms import FeedingForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,7 @@ def signup(request):
 class BabyCreate(CreateView):
     model = Baby
     fields = ['name', 'date_of_birth', 'height', 'weight']
-    success_url='/babys'
+    success_url='/babies'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -102,4 +102,13 @@ def babies_index(request):
 #===BABY DETAIL PAGE FUNCTION===
 def babies_detail(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
-    return render(request, 'cats/detail.html', {'baby': baby})
+    return render(request, 'babies/detail.html', {'baby': baby})
+
+#===ADD FEEDING FUNCTION===
+def add_feeding(request, baby_id):
+    form = FeedingForm(request.POST)
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.baby_id = baby_id
+        new_feeding.save()
+    return redirect('detail', baby_id=baby_id)
