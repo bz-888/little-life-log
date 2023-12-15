@@ -102,7 +102,8 @@ def babies_index(request):
 #===BABY DETAIL PAGE FUNCTION===
 def babies_detail(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
-    return render(request, 'babies/detail.html', {'baby': baby})
+    feeding_form = FeedingForm()
+    return render(request, 'babies/detail.html', {'baby': baby, 'feeding_form': feeding_form})
 
 #===ADD FEEDING FUNCTION===
 def add_feeding(request, baby_id):
