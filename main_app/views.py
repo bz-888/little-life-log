@@ -35,13 +35,13 @@ def signup(request):
 #===CREATE FUNCTION===
 class BabyCreate(CreateView):
     model = Baby
-    fields = '__all__'
+    fields = ['name', 'date_of_birth', 'height', 'weight', 'user']
     success_url='/babys'
 
 #===UPDATE FUNCTION===
 class BabyUpdate(UpdateView):
     model = Baby
-    fields = '__all__'
+    fields = ['name', 'height', 'weight']
     success_url = '/babys'
 
 #===DELETE FUNCTION===
