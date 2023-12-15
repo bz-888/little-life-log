@@ -29,6 +29,15 @@ class BabyDelete(DeleteView):
     success_url = '/babys'
 
 #=====PLAYDATE MODEL CREATE,UPDATE,DELETE FUNCTIONS HERE=====
+
+#===LIST FUNCTION===
+class PlayDateList(ListView):
+    model = Playdate
+
+#===DETAIL FUNCTION===
+class PlayDateDetil(DetailView):
+    model = Playdate
+
 #===CREATE FUNCTION===
 class PlayDateCreate(CreateView):
     model = Playdate
