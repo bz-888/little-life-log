@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.urls import reverse
+from django.contrib.auth.models import User
 # Create your models here.
 class Baby(models.Model):
     # models.CharField are called field types if you want to google others
@@ -9,8 +10,8 @@ class Baby(models.Model):
 	age = models.IntegerField()# Many to Many, note Toy must be defined before we reference it
 	toys = models.ManyToManyField(Toy)
 	user = models.ForeignKey(User, on_delete=User)
-
-        def get_absolute_url(self):
+	
+	def get_absolute_url(self):
 		# self.id refers to the cat you just created
 		# this redirects the user after they created something
 		# or updated the cat.
