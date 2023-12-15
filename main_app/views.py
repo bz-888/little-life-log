@@ -35,7 +35,7 @@ class PlayDateList(ListView):
     model = Playdate
 
 #===DETAIL FUNCTION===
-class PlayDateDetil(DetailView):
+class PlayDateDetail(DetailView):
     model = Playdate
 
 #===CREATE FUNCTION===
