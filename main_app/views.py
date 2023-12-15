@@ -35,7 +35,7 @@ def signup(request):
 #===CREATE FUNCTION===
 class BabyCreate(CreateView):
     model = Baby
-    fields = ['name', 'date_of_birth', 'height', 'weight', 'user']
+    fields = ['name', 'date_of_birth', 'height', 'weight']
     success_url='/babys'
 
 #===UPDATE FUNCTION===
