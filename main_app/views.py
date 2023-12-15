@@ -38,6 +38,10 @@ class BabyCreate(CreateView):
     fields = ['name', 'date_of_birth', 'height', 'weight']
     success_url='/babys'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 #===UPDATE FUNCTION===
 class BabyUpdate(UpdateView):
     model = Baby
