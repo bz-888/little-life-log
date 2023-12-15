@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Little Life List</h1>
+
+{% for baby in babies %}
+<a href="{% url 'detail' baby.id %}">
+	<div class="card">
+		<div class="card-content">
+			<span class="card-title">{{ baby.name }}</span>
+			<p>Parent User: {{baby.user.name}}</p>
+			<p>Date of Birth: {{ baby.date_of_birth }}</p>
+			<p>Age: Functionality Incoming</p>
+			<p>Height (cm): {{ baby.height }}</p>
+			<p>Weight (lb): {{ baby.weight }}</p>
+		</div>
+	</div>
+</a>
+
+{% endfor %}
+{% endblock content %}
+	
