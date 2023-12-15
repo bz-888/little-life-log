@@ -20,16 +20,17 @@ class Baby(models.Model):
    date_of_birth = models.DateField('Birthdate')
    height = models.FloatField()
    weight = models.FloatField()
-   playdates = models.ManyToManyField()
+   playdate = models.ManyToManyField(Playdate)
    user = models.ForeignKey(User, on_delete=User)
 
    def get_absolute_url(self):
       return reverse('', kwargs={'pk': self.pk})
 
+#I updated this from breakfast, lunch, and dinner to morning, afternoon, and evening.
 MEALS = (
-   ('M', "Morning")
-   ('A', "Afternoon")
-   ('E', "Evening")
+   ('M', "Morning"),
+   ('A', "Afternoon"),
+   ('E', "Evening"),
 )
 
 ## Icebox item
