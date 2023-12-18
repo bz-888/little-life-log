@@ -15,6 +15,9 @@
 </form>
 
 <script>
+    const timer = document.getElementById('id_time')
+	M.Timepicker.init(timer, {})
+
 	const dateEl = document.getElementById('id_date');
 	// M is Materialize's global variable
 	M.Datepicker.init(dateEl, {
