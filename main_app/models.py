@@ -26,21 +26,19 @@ class Baby(models.Model):
    def get_absolute_url(self):
       return reverse('', kwargs={'pk': self.pk})
 
+class Photo(models.Model):
+   url = models.CharField(max_length=200)
+   baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
+
+   def __str__(self):
+      return f'Photo for baby_id: {self.baby_id} @{self.url}'
+
 #I updated this from breakfast, lunch, and dinner to morning, afternoon, and evening.
 MEALS = (
    ('M', "Morning"),
    ('A', "Afternoon"),
    ('E', "Evening"),
 )
-
-## Icebox item
-# class Photo(models.Model):
-#    url = models.CharField(max_length=200)
-#    baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
-
-#    def __str__(self):
-#       return f'Photo for baby_id: {self.baby_id} @{self.url}'
-
 
 #one to many
 class Feeding(models.Model):
