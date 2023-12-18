@@ -47,3 +47,6 @@ child's flourishing life.
 * Track diaper changes
 * Track sleep patterns
 * Time-based notifications
+
+## Credits
+* Photo by [Alexander Dummer](https://unsplash.com/@4dgraphic?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/two-babies-and-woman-sitting-on-sofa-while-holding-baby-and-watching-on-tablet-UH-xs-FizTk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
