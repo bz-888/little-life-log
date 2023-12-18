@@ -47,7 +47,8 @@
 			</tbody>
 		</table>
 	</div>
-</div>th
+
+</div>
 
 <div class="row">
 	<div class="col s6">
@@ -77,7 +78,32 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+	<div class="col s6">
+		<h3>Available Playdates</h3>
+		{% if playdates.count %}
+		{% for playdate in playdates.all%}
+		<div class="card">
+			<div class="card-content">
+				<span class="card-title">
+					Playdate at {{playdate.location}}
+				</span>
+				<p>Date: {{playdate.date}}</p>
+				<p>Time: {{playdate.time}}</p>
+			</div>
+			<div class="card-action">
+				<form action="{% url 'assoc_playdate' baby.id playdate.id %} " method="POST">
+					{% csrf_token %}
+					<button type="submit" class="btn">Add</button>
+				</form>
+			</div>
+		</div>
+		{% endfor %}
+		{% else %}
+		<h5>Baby already has all playdates available!</h5>
+		{% endif %}
+	</div>
+</div>	
+
 
 <script>
 
