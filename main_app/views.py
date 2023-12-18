@@ -31,7 +31,22 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+#===ADD PHOTO FUNCTION===
+def add_photo(request, baby_id):
+	photo_file = request.FILES.get('photo-file', None)
+	if photo_file:
+		s3 = boto3.client('s3')
 
+		key = f"littlelifelog/{uuid.uuid4().hex[:6]}{photo_file.name[photo_file.name.rfind('.'):]}"
+		try:
+			bucket = os.environ['BUCKET_NAME']
+			photo_url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+			Photo.objects.create(url=photo_url, baby_id=baby_id)
+
+		except Exception as e:
+			print('AN error uploading to aws')
+			print(e)
+	return redirect('detail', baby_id=baby_id)
 
 #=====BABY MODEL CREATE,UPDATE,DELETE FUNCTIONS HERE=====
 #===CREATE FUNCTION===
@@ -117,20 +132,3 @@ def add_feeding(request, baby_id):
         new_feeding.baby_id = baby_id
         new_feeding.save()
     return redirect('detail', baby_id=baby_id)
-
-#===ADD PHOTO FUNCTION===
-def add_photo(request, baby_id):
-	photo_file = request.FILES.get('photo-file', None)
-	if photo_file:
-		s3 = boto3.client('s3')
-
-		key = f"littlelifelog/{uuid.uuid4().hex[:6]}{photo_file.name[photo_file.name.rfind('.'):]}"
-		try:
-			bucket = os.environ['BUCKET_NAME']
-			photo_url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-			Photo.objects.create(url=photo_url, baby_id=baby_id)
-
-		except Exception as e:
-			print('AN error uploading to aws')
-			print(e)
-	return redirect('detail', baby_id=baby_id)
