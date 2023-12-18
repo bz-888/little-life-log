@@ -12,7 +12,7 @@ class Playdate(models.Model):
       return self.name
 
    def get_absolute_url(self):
-       return reverse ('', kwargs={'pk': self.pk})
+       return reverse ('playdates_detail', kwargs={'pk': self.pk})
 
 #main model
 class Baby(models.Model):
@@ -24,7 +24,7 @@ class Baby(models.Model):
    user = models.ForeignKey(User, on_delete=User)
 
    def get_absolute_url(self):
-      return reverse('', kwargs={'pk': self.pk})
+      return reverse('detail', kwargs={'baby_id': self.pk})
 
 class Photo(models.Model):
    url = models.CharField(max_length=200)
