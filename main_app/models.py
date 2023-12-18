@@ -17,9 +17,9 @@ class Playdate(models.Model):
 #main model
 class Baby(models.Model):
    name = models.CharField(max_length=100)
-   date_of_birth = models.DateField('Birthdate')
-   height = models.FloatField()
-   weight = models.FloatField()
+   date_of_birth = models.DateField('Date of Birth')
+   height = models.FloatField('Height (cm)')
+   weight = models.FloatField('Weight (lb)')
    playdate = models.ManyToManyField(Playdate)
    user = models.ForeignKey(User, on_delete=User)
 

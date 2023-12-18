@@ -3,9 +3,9 @@
 {% block content %}
 
 {% if object %}
-<h1>Edit <span>{{ object.name }}</span></h1>
+<h1 class="page-title">Edit <span>{{ object.name }}</span></h1>
 {% else %}
-<h1>Add Baby Profile</h1>
+<h1 class="page-title">Add Baby Profile</h1>
 {% endif %}
 
 <form action="" method="Post">
@@ -26,5 +26,7 @@
 		autoClose: true
 	});
 </script>
+
+<br>
 
 {% endblock content %}
