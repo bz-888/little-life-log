@@ -76,7 +76,12 @@
 </div>
 
 <script>
+
+	const select = document.querySelector('select');
+	M.FormSelect.init(select, {})
+
 	const dateEl = document.getElementById('id_date');
+	
 	// M is Materialize's global variable
 	M.Datepicker.init(dateEl, {
 		format: 'yyyy-mm-dd',
