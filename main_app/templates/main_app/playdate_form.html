@@ -16,7 +16,9 @@
 
 <script>
     const timer = document.getElementById('id_time')
-	M.Timepicker.init(timer, {})
+	M.Timepicker.init(timer, {
+        twelveHour: false,
+    })
 
 	const dateEl = document.getElementById('id_date');
 	// M is Materialize's global variable
