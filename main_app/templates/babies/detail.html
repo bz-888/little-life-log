@@ -65,7 +65,7 @@
 
 <div class="row">
 	<div class="col s6">
-		<h3>Playdates:</h3>
+		<h3 class="page-title">Playdates:</h3>
 		{% if baby.playdate.count%}
 		{% for playdate in baby.playdate.all %}
 		<div class="card">
@@ -83,7 +83,7 @@
 		{% endif %}
 	</div>
 	<div class="col s6">
-		<h3>Available Playdates</h3>
+		<h3 class="page-title">Available Playdates</h3>
 		{% if playdates.count %}
 		{% for playdate in playdates.all%}
 		<div class="card">
