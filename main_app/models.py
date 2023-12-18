@@ -49,7 +49,7 @@ class Feeding(models.Model):
       choices=MEALS,
       default=MEALS[0][0]
    )
-   amount = models.FloatField()
+   amount = models.FloatField("Amount (ml)")
    baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
 
    def __str__(self):
