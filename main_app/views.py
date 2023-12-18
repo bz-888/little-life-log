@@ -48,7 +48,6 @@ class BabyCreate(CreateView):
 class BabyUpdate(UpdateView):
     model = Baby
     fields = ['name', 'height', 'weight']
-    success_url = '/babies'
 
 #===DELETE FUNCTION===
 class BabyDelete(DeleteView):
@@ -69,19 +68,17 @@ class PlayDateDetail(DetailView):
 class PlayDateCreate(CreateView):
     model = Playdate
     fields = '__all__'
-    success_url = '/babies'
 
 #===UPDATE FUNCTION===
 class PlayDateUpdate(UpdateView):
     model = Playdate
     fields = '__all__'
-    success_url = '/babies'
+
 
 #===DELETE FUNCTION===
 class PlayDateDelete(DeleteView):
     model = Playdate
-    success_url = '/babies'
-
+    success_url = '/playdates'
 #===ASSOC PLAYDATE TO BABY FUNCTION===
 def assoc_playdate(request, baby_id, playdate_id):
     Baby.objects.get(id=baby_id).playdate.add(playdate_id)
