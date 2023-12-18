@@ -31,6 +31,8 @@
 				<tr>
 					<th>Date</th>
 					<th>Meal</th>
+					<th>Time</th>
+					<th>Amount</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,12 +40,14 @@
 				<tr>
 					<td>{{feeding.date}}</td>
 					<td>{{feeding.get_meal_display}}</td>
+					<td>{{feeding.time}}</td>
+					<td>{{feeding.amount}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
-</div>
+</div>th
 
 <div class="row">
 	<div class="col s6">
