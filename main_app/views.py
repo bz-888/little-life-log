@@ -3,14 +3,16 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-from .models import Baby, Playdate
+from .models import Baby, Playdate, Photo
 from .forms import FeedingForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
+import boto3
+import uuid
+import os
 # Create your views here.
 # Test from Dennelle
 
@@ -113,3 +115,20 @@ def add_feeding(request, baby_id):
         new_feeding.baby_id = baby_id
         new_feeding.save()
     return redirect('detail', baby_id=baby_id)
+
+#===ADD PHOTO FUNCTION===
+def add_photo(request, baby_id):
+	photo_file = request.FILES.get('photo-file', None)
+	if photo_file:
+		s3 = boto3.client('s3')
+
+		key = f"littlelifelog/{uuid.uuid4().hex[:6]}{photo_file.name[photo_file.name.rfind('.'):]}"
+		try:
+			bucket = os.environ['BUCKET_NAME']
+			photo_url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+			Photo.objects.create(url=photo_url, baby_id=baby_id)
+
+		except Exception as e:
+			print('AN error uploading to aws')
+			print(e)
+	return redirect('detail', baby_id=baby_id)
