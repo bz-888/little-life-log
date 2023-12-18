@@ -7,8 +7,9 @@
     <div class="col s6 col-offset-3">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{ playdate.name }}</span>
-                <p>Color: {{ playdate.color }}</p>
+                <p>Location: {{ playdate.location }}</p>
+                <p>Date: {{ playdate.date }}</p>
+                <p>Time: {{ playdate.time }}</p>
             </div>
             <div class="card-action">
                 <a href="{% url 'playdates_update' playdate.id %}">Edit</a>

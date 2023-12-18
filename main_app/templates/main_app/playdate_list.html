@@ -7,8 +7,9 @@
 <a href="{% url 'playdates_detail' playdate.id %}">
     <div class="card">
         <div class="card-content">
-            <span class="card-title">{{ playdate.name }}</span>
-            <p>Color: {{ playdate.color }}</p>
+            <p>Location: {{ playdate.location }}</p>
+            <p>Date: {{ playdate.date }}</p>
+            <p>Time: {{ playdate.time }}</p>
         </div>
     </div>
 </a>
