@@ -75,6 +75,8 @@ class BabyDelete(DeleteView):
 class PlayDateList(ListView):
     model = Playdate
 
+
+
 #===DETAIL FUNCTION===
 class PlayDateDetail(DetailView):
     model = Playdate

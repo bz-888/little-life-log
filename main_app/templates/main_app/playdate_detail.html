@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="page-title">Playdate Details</h1>
+
 
 <div class="row">
     <div class="col s6 col-offset-3">
+        <h1 class="page-title">Playdate Details</h1>
         <div class="card">
             <div class="card-content">
                 <p>Location: {{ playdate.location }}</p>
@@ -16,6 +17,17 @@
                 <a href="{% url 'playdates_delete' playdate.id %}">Delete</a>
             </div>
         </div>
+    </div>
+    <div class="col s6">
+        <h1 class="page-title">Babies Attending</h1>
+        {% for baby in playdate.baby_set.all %}
+        <div class="card">
+            <div class="card-content">
+                <p>Name: {{baby.name}}</p>
+                <p>Parent: {{baby.user}}</p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 
