@@ -7,25 +7,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Little Life Log</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
 	<header class="navbar-fixed">
 		<nav>
-			<div class="nav-wrapper">
+			<div class="nav-wrapper teal accent-2">
 				<ul>
-					<li><a href="/" class="left brand-logo">&nbsp;&nbsp;Little Life Log</a></li>
+					<li><a href="/" class="brand-logo">&nbsp;&nbsp;&nbsp;Little Life Log</a></li>
 				</ul>
 				<ul class="right">
-					<li><a href="{% url 'about' %}">About</a></li>
+					<li><a href="{% url 'about' %}" class="top-links">About</a></li>
 					{% if user.is_authenticated %}
-					<li><a href="{% url 'index' %}">View Babies</a></li>
-					<li><a href="{% url 'baby_create' %}">Add a Baby</a></li>
-					<li><a href="{% url 'playdates_index' %}">View Play Dates</a></li>
-					<li><a href="{% url 'playdates_create' %}">Organize a Play Date</a></li>
+					<li><a href="{% url 'index' %}" class="top-links">View Babies</a></li>
+					<li><a href="{% url 'baby_create' %}" class="top-links">Add a Baby</a></li>
+					<li><a href="{% url 'playdates_index' %}" class="top-links">View Play Dates</a></li>
+					<li><a href="{% url 'playdates_create' %}" class="top-links">Organize a Play Date</a></li>
 					<li>
 						<form id="logout-form" method="POST" action="{% url 'logout' %}">
 							{% csrf_token %}
@@ -44,8 +47,8 @@
 		{% block content %}
 		{% endblock %}
 	</main>
-	<footer class="page-footer">
-		<div class="right">All Rights Reserved, &copy; 2023 Little Life Log &nbsp;</div>
+	<footer class="page-footer pink accent-2">
+		<div class="right grey-text text-darken-3">All Rights Reserved, &copy; 2023 Little Life Log &nbsp;</div>
 	</footer>
 </body>
 
