@@ -82,7 +82,7 @@ class PlayDateDelete(DeleteView):
 
 #===ASSOC PLAYDATE TO BABY FUNCTION===
 def assoc_playdate(request, baby_id, playdate_id):
-    Baby.objects.get(id=baby_id).playdates.add(playdate_id)
+    Baby.objects.get(id=baby_id).playdate.add(playdate_id)
     return redirect('detail', baby_id=baby_id)
 
 
@@ -102,8 +102,10 @@ def babies_index(request):
 #===BABY DETAIL PAGE FUNCTION===
 def babies_detail(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
+    id_list= baby.playdate.all().values_list('id')
+    playdates_baby_doesnt_have = Playdate.objects.exclude(id__in=id_list)
     feeding_form = FeedingForm()
-    return render(request, 'babies/detail.html', {'baby': baby, 'feeding_form': feeding_form})
+    return render(request, 'babies/detail.html', {'baby': baby, 'feeding_form': feeding_form, 'playdates': playdates_baby_doesnt_have})
 
 #===ADD FEEDING FUNCTION===
 def add_feeding(request, baby_id):
