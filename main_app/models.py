@@ -60,8 +60,8 @@ class Feeding(models.Model):
 
 
 DIAPERTYPE = (
-   ('#1'),
-   ('#2'),
+   ('#1', "Pee"),
+   ('#2', "Poo"),
 )
 
 class Diaper(models.Model):
@@ -74,8 +74,8 @@ class Diaper(models.Model):
    baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
 
 SLEEPTYPE = (
-   ('Nap'),
-   ('Sleep'),
+   ('n', 'Nap'),
+   ('s', 'Sleep'),
 )
 
 class Sleep(models.Model):
