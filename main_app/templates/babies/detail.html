@@ -18,20 +18,20 @@
 				<a href="{% url 'baby_delete' baby.id %}">Remove</a>
 			</div>
 		</div>
-{% for photo in baby.photo_set.all %}
-<img src="{{photo.url}}" alt="baby photo" class="responsive-img card panel">
-{% empty %}
-<div class="card-panel teal-text center align">No Photos Uploaded</div> {% endfor %}
+		{% for photo in baby.photo_set.all %}
+		<img src="{{photo.url}}" alt="baby photo" class="responsive-img card panel">
+		{% empty %}
+		<div class="card-panel teal-text center align">No Photos Uploaded</div> {% endfor %}
 
-<form action="{% url 'add_photo' baby.id %}" enctype="multipart/form-data" method="POST">
-	{% csrf_token %}
-	<input type="file" name="photo-file">
-	<br>
-	<br>
-	<button type="submit" class="btn">Upload Photo</button>
-</form>
-</div>
-<!-- New Markup Below -->
+		<form action="{% url 'add_photo' baby.id %}" enctype="multipart/form-data" method="POST">
+			{% csrf_token %}
+			<input type="file" name="photo-file">
+			<br>
+			<br>
+			<button type="submit" class="btn">Upload Photo</button>
+		</form>
+	</div>
+	<!-- New Markup Below -->
 	<div class="col s6">
 		<form action="{% url 'add_feeding' baby.id %}" method="POST">
 			{% csrf_token %}

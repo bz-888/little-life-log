@@ -57,3 +57,32 @@ class Feeding(models.Model):
 
    class Meta:
       ordering = ['-date']
+
+
+DIAPERTYPE = (
+   ('#1'),
+   ('#2'),
+)
+
+class Diaper(models.Model):
+   date = models.DateField('Change Date')
+   time = models.TimeField('Change Time')
+   type = models.CharField(
+      choices=DIAPERTYPE,
+      default = DIAPERTYPE[0]
+   )
+   baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
+
+SLEEPTYPE = (
+   ('Nap'),
+   ('Sleep'),
+)
+
+class Sleep(models.Model):
+   date = models.DateField('Sleep Date')
+   startTime = models.TimeField('Start Time')
+   endTime = models.TimeField('End Time')
+   type = models.CharField(
+      choices=SLEEPTYPE,
+      default=SLEEPTYPE[0],
+   )
