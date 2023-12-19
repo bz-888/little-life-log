@@ -7,6 +7,7 @@ class Playdate(models.Model):
    date = models.DateField()
    time = models.TimeField()
    location = models.CharField(max_length=250)
+   babies = models.ManyToManyField('Baby')
 
    def __str__(self):
       return self.name
