@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from .models import Baby, Playdate, Photo
-from .forms import FeedingForm
+from .forms import FeedingForm, DiaperForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -121,7 +121,12 @@ def babies_detail(request, baby_id):
     id_list= baby.playdate.all().values_list('id')
     playdates_baby_doesnt_have = Playdate.objects.exclude(id__in=id_list)
     feeding_form = FeedingForm()
-    return render(request, 'babies/detail.html', {'baby': baby, 'feeding_form': feeding_form, 'playdates': playdates_baby_doesnt_have})
+    diaper_form = DiaperForm()
+    return render(request, 'babies/detail.html', {
+        'baby': baby, 
+        'feeding_form': feeding_form, 
+        'diaper_form': diaper_form, 
+        'playdates': playdates_baby_doesnt_have})
 
 #===ADD FEEDING FUNCTION===
 def add_feeding(request, baby_id):
@@ -130,4 +135,13 @@ def add_feeding(request, baby_id):
         new_feeding = form.save(commit=False)
         new_feeding.baby_id = baby_id
         new_feeding.save()
+    return redirect('detail', baby_id=baby_id)
+
+#===ADD DIAPER CHANGE FUNCTION===
+def add_change(request, baby_id):
+    form = DiaperForm(request.POST)
+    if form.is_valid():
+        new_change = form.save(commit=False)
+        new_change.baby_id = baby_id
+        new_change.save()
     return redirect('detail', baby_id=baby_id)

@@ -60,18 +60,25 @@ class Feeding(models.Model):
 
 
 DIAPERTYPE = (
-   ('#1', "Pee"),
-   ('#2', "Poo"),
+   ('1', "Pee"),
+   ('2', "Poo"),
 )
 
 class Diaper(models.Model):
    date = models.DateField('Change Date')
    time = models.TimeField('Change Time')
    type = models.CharField(
+      max_length=1,
       choices=DIAPERTYPE,
-      default = DIAPERTYPE[0]
+      default = DIAPERTYPE[0][0]
    )
    baby = models.ForeignKey(Baby, on_delete=models.CASCADE)
+   
+   def __str__(self):
+      return f"{self.get_diaper_display()} on {self.date}"
+   
+   class Meta:
+      ordering = ['-date']
 
 SLEEPTYPE = (
    ('n', 'Nap'),
@@ -83,6 +90,7 @@ class Sleep(models.Model):
    startTime = models.TimeField('Start Time')
    endTime = models.TimeField('End Time')
    type = models.CharField(
+      max_length=1,
       choices=SLEEPTYPE,
-      default=SLEEPTYPE[0],
+      default=SLEEPTYPE[0][0],
    )

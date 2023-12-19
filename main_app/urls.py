@@ -18,5 +18,5 @@ urlpatterns = [
     path('babies/<int:baby_id>/add_feeding', views.add_feeding, name="add_feeding"),
     path('babies/<int:baby_id>/add_photo/', views.add_photo, name='add_photo'),
     path('accounts/signup/', views.signup, name="signup"),
-
+    path('babies/<int:baby_id>/add_change', views.add_change, name='add_change')
 ]

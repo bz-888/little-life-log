@@ -18,6 +18,9 @@
 				<a href="{% url 'baby_delete' baby.id %}">Remove</a>
 			</div>
 		</div>
+	</div>
+	<!-- New Markup Below -->
+	<div class="col s6">
 		{% for photo in baby.photo_set.all %}
 		<img src="{{photo.url}}" alt="baby photo" class="responsive-img card panel">
 		{% empty %}
@@ -31,14 +34,19 @@
 			<button type="submit" class="btn">Upload Photo</button>
 		</form>
 	</div>
-	<!-- New Markup Below -->
+
+</div>
+
+<div class="row">
 	<div class="col s6">
 		<form action="{% url 'add_feeding' baby.id %}" method="POST">
 			{% csrf_token %}
 			{{ feeding_form.as_p }}
 			<button type="submit" class="btn">Add Feeding</button>
 		</form>
+	</div>
 
+	<div class="col s6">
 		<table class="striped">
 			<thead>
 				<tr>
@@ -60,8 +68,40 @@
 			</tbody>
 		</table>
 	</div>
-
 </div>
+
+
+<div class="row">
+	<div class="col s6">
+		<form action="{% url 'add_change' baby.id %}" method="POST">
+			{% csrf_token %}
+			{{ diaper_form.as_p }}
+			<button type="submit" class="btn">Add Diaper Change</button>
+		</form>
+	</div>
+
+	<div class="col s6">
+		<table class="striped">
+			<thead>
+				<tr>
+					<th>Change Date</th>
+					<th>Change Time</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for diaper in baby.diaper_set.all %}
+				<tr>
+					<td>{{diaper.date}}</td>
+					<td>{{diaper.time}}</td>
+					<td>{{diaper.get_type_display}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>	
+
 
 <div class="row">
 	<div class="col s6">
